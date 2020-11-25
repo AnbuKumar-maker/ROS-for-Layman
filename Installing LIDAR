@@ -1,0 +1,25 @@
+Run the below commands after inserting LIDAR in Jetson Nano USB :
+
+ls -l /dev | grep ttyUSB
+
+crw-rw---- 1 root dialout 188,  0 Oct 30 18:10 ttyUSB0
+
+sudo chmod 666 /dev/ttyUSB0
+
+sudo apt-get install cmake python-catkin-pkg python-empy python-nose python-setuptools libgtest-dev python-rosinstall python-rosinstall-generator python-wstool build-essential git
+
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/
+
+echo "source $HOME/catkin_ws/devel/setup.bash" >> ~/.bashrc
+
+cd ~/catkin_ws/
+
+catkin_make
+
+roslaunch rplidar_ros rplidar.launch
+
+rostopic echo /scan
+
+rviz
+
